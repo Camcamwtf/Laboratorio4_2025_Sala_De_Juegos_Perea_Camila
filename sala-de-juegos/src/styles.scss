@@ -1,0 +1,63 @@
+@use '@angular/material' as mat;
+
+:root {
+  --ion-color-primary:   #F4A261;
+  --ion-color-secondary: #E76F51;
+  --ion-color-tertiary:  #2A9D8F;
+  --ion-color-light:     #FFF8E7;
+  --ion-color-dark:      #8D6E63;
+  --ion-color-medium:    #2A9D8F;
+
+  --fondo-principal:     #FFF8E7;
+  --texto-principal:     #2E2E2E;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-color-primary:   #F4A261;
+    --ion-color-secondary: #E76F51;
+    --ion-color-tertiary:  #2A9D8F;
+    --ion-color-light:     #8D6E63;
+    --ion-color-dark:      #2E2E2E;
+    --ion-color-medium:    #2A9D8F;
+
+    --fondo-principal:     #1e1e1e;
+    --texto-principal:     #FFF8E7;
+  }
+}
+
+@include mat.core();
+
+html {
+  @include mat.theme((
+    color: (),
+    typography: Roboto,
+    density: 0
+  ));
+}
+
+html, body { 
+  height: 100%; 
+}
+
+body {
+  background-color: var(--fondo-principal);
+  color: var(--texto-principal);
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+h1, h2, h3 {
+  color: var(--ion-color-tertiary);
+}
+
+mat-card {
+  background: var(--ion-color-light);
+  color: var(--texto-principal);
+  gap: 1rem;
+}
+
+.button {
+  background: var(--ion-color-tertiary) !important;
+  color: var(--texto-principal);
+}

@@ -1,0 +1,25 @@
+<div class="center" [@fade]>
+    <mat-card appearance="outlined">
+        <h2>{{ isRegister() ? 'Crear cuenta' : 'Iniciar sesión' }}</h2>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline" class="full">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" type="email" autocomplete="email">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full">
+                <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="password" type="password" autocomplete="current-password">
+            </mat-form-field>
+        </form>
+
+        <button mat-flat-button class="button" type="submit">
+            {{ isRegister() ? 'Registrarme' : 'Ingresar' }}
+        </button>
+
+        <button mat-flat-button class="button" (click)="toggleMode()">
+            {{ isRegister() ? 'Ya tengo cuenta' : 'Crear nueva cuenta' }}
+        </button>
+    </mat-card>
+</div>
