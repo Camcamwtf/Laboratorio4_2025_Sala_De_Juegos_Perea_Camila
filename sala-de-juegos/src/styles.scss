@@ -1,63 +1,218 @@
 @use '@angular/material' as mat;
 
-:root {
-  --ion-color-primary:   #F4A261;
-  --ion-color-secondary: #E76F51;
-  --ion-color-tertiary:  #2A9D8F;
-  --ion-color-light:     #FFF8E7;
-  --ion-color-dark:      #8D6E63;
-  --ion-color-medium:    #2A9D8F;
+@include mat.core();
 
-  --fondo-principal:     #FFF8E7;
-  --texto-principal:     #2E2E2E;
+:root{
+  --color-primary:      #007DAF;
+  --color-secondary:    #C771D4;
+  --color-tertiary:     #FFB829;
+  --color-dark:         #0D1327;
+  --color-violet:       #603271;
+  --color-light-violet: #A89EFF;
+  --color-blue:         #1D6DB8;
+  --color-dark-blue:    #0A3D6C;
+  --color-pink:         #C771D4;
+  --color-danger:       #F23838;
+  --color-white:        #EAF2FF;
+  --texto-principal:    #EAF2FF;
+  --texto-secundario:   #0D1327;
+
+  --color-pink-rgb: 199 113 212;
+  --color-light-violet-rgb: 168 158 255;
+
+  --background: url('/assets/background.png');
+  --toolbar-h: 64px;
+
+  --font-family: 'Comfortaa', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --mdc-typography-font-family: var(--font-family);
 }
-
-@media (prefers-color-scheme: dark) {
+@media (max-width: 599px) {
   :root {
-    --ion-color-primary:   #F4A261;
-    --ion-color-secondary: #E76F51;
-    --ion-color-tertiary:  #2A9D8F;
-    --ion-color-light:     #8D6E63;
-    --ion-color-dark:      #2E2E2E;
-    --ion-color-medium:    #2A9D8F;
-
-    --fondo-principal:     #1e1e1e;
-    --texto-principal:     #FFF8E7;
+    --toolbar-h: 56px;
   }
 }
 
-@include mat.core();
+.main {
+  flex: 1 1 auto;
+  min-height: calc(100dvh - var(--toolbar-h));
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.mat-mdc-raised-button.mat-tertiary,
+.mat-mdc-unelevated-button.mat-tertiary {
+  --mdc-filled-button-container-color: var(--color-tertiary);
+  --mdc-filled-button-label-text-color: #eafdfb;
+}
 
 html {
   @include mat.theme((
-    color: (),
+    color: (
+      primary: mat.$blue-palette,
+      secondary: mat.$blue-palette,
+      tertiary: mat.$blue-palette
+    ),
     typography: Roboto,
     density: 0
   ));
 }
 
-html, body { 
-  height: 100%; 
-}
-
 body {
-  background-color: var(--fondo-principal);
-  color: var(--texto-principal);
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-h1, h2, h3 {
-  color: var(--ion-color-tertiary);
-}
-
-mat-card {
-  background: var(--ion-color-light);
+  min-height: 100%;
   color: var(--texto-principal);
-  gap: 1rem;
+  overflow: hidden;
+
+  background-image:
+    radial-gradient(1200px 800px at 20% -10%,
+      rgba(12, 16, 36, 0.30) 10%,
+      rgba(10, 15, 28, 0.30) 40%,
+      rgba(7, 11, 20, 0.30) 80%),
+    var(--background);
+
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: cover, cover;
+  background-attachment: fixed, fixed;
 }
 
-.button {
-  background: var(--ion-color-tertiary) !important;
-  color: var(--texto-principal);
+html, body {
+  height:100%;
+  margin: 0;
+  font-family: var(--ion-font-family) !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
+
+// #region Fuente de la letra del sitio
+html, body, app-root {
+  font-family: var(--font-family) !important;
+}
+
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button,
+.mat-mdc-fab,
+.mat-mdc-mini-fab,
+.mat-mdc-card,
+.mat-mdc-menu-item,
+.mat-mdc-tooltip,
+.mat-mdc-form-field,
+.mat-mdc-input-element,
+.mat-mdc-select,
+.mat-mdc-option,
+.mat-mdc-form-field,
+.mat-mdc-form-field *,
+.mdc-floating-label,
+mat-toolbar {
+  font-family: var(--font-family) !important;
+}
+// #endregion
+
+.mat-mdc-input-element {
+  color: #FFFFFF !important;
+  caret-color: var(--color-tertiary);
+}
+.mat-mdc-input-element::placeholder {
+  color: rgb(255, 255, 255);
+}
+
+.mat-mdc-form-field-hint, .mat-mdc-form-field-error {
+  color: rgba(255,255,255,.8);
+}
+
+.material-icons {
+  font-family: 'Material Icons' !important;
+  font-feature-settings: 'liga';
+  font-weight: normal;
+  font-style: normal;
+  color: var(--color-light-violet);
+}
+
+a[mat-button],
+button[mat-button] {
+  color:#bcd7ff;
+}
+
+a[mat-button]:hover,
+button[mat-button]:hover {
+  background: rgba(138,141,255,.15);
+}
+
+app-root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+// #region Visualización de las cards
+mat-card.mdc-card,
+.mat-mdc-card {
+  color: var(--texto-principal);
+  background: rgba(16,20,36,.8);
+  border: 1px solid rgba(130,160,255,.15);
+  backdrop-filter: blur(4px);
+}
+
+.mat-mdc-card.card-shadow-m {
+  box-shadow:
+    0 12px 32px rgba(0,0,0,.34),
+    0 6px 16px rgba(0,0,0,.26),
+    0 0 0 1px rgba(0,0,0,.22);
+}
+
+.mat-mdc-card.card-shadow-l {
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.42),
+    0 8px 24px rgba(0,0,0,.30),
+    0 0 0 1px rgba(0,0,0,.22);
+}
+
+.mat-mdc-card.card-hover {
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.mat-mdc-card.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,.42),
+    0 6px 18px rgba(0,0,0,.28),
+    0 0 0 1px rgba(0,0,0,.22);
+}
+// #endregion
+
+// #region Personalización de SweetAlert2
+.swal2-popup.swal-cold-popup {
+  background: var(--color-light-violet) !important;
+  color: var(--texto-principal) !important;
+  border: 1px solid rgba(130,160,255,.15);
+  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+}
+
+.swal2-title.swal-cold-title {
+  color: var(--color-violet) !important;
+  font-weight: 700;
+}
+
+.swal2-confirm.swal-cold-btn {
+  background: var(--color-violet) !important;
+  color: var(--texto-principal) !important;
+  border-radius: 10px !important;
+  padding: 10px 18px !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  text-transform: none;
+}
+
+.swal2-confirm.swal-cold-btn:hover {
+  filter: brightness(1.08);
+}
+.swal2-confirm.swal-cold-btn:focus {
+  outline: 2px solid var(--color-light-violet);
+  outline-offset: 2px;
+}
+// #endregion

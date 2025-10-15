@@ -1,0 +1,76 @@
+<mat-card class="estadisticas-card split estadisticas-card--shadow-m estadisticas-card--hover" appearance="outlined">
+  <!-- #region División principal -->
+  <div class="estadisticas-div">
+    <h1>Estadísticas</h1>
+    <!-- #region Mis Resultados -->
+    <section class="panel">
+      <header class="panel-header">
+        <h2>Mis Resultados</h2>
+      </header>
+
+      <ng-container *ngIf="!cargandoResultados(); else cargaResultadosTpl">
+        <div class="lista" *ngIf="resultados().length > 0; else sinResultadosTpl">
+          <div class="row" *ngFor="let r of resultados()">
+            <div class="row-left">
+              <span class="badge" [attr.data-juego]="r.juego">{{ r.juego }}</span>
+            </div>
+            <div class="row-center">
+              <div class="row-title">Puntos: <b>{{ r.puntaje }}</b> — {{ r.gano ? 'Ganado' : 'Perdido' }}</div>
+            </div>
+            <div class="row-right">
+              <div class="fecha">{{ r.fechaISO | date:'short' }}</div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #cargaResultadosTpl>
+        <div class="loading"><mat-icon class="spin">autorenew</mat-icon><span>Cargando resultados...</span></div>
+      </ng-template>
+      <ng-template #sinResultadosTpl>
+        <div class="sin-datos"><mat-icon>info</mat-icon><span>Sin resultados registrados.</span></div>
+      </ng-template>
+    </section>
+    <!-- #endregion -->
+
+    <!-- #region Mis Encuestas -->
+    <section class="panel" *ngIf="!esAdmin()">
+      <header class="panel-header">
+        <h2>Mis Encuestas</h2>
+      </header>
+
+      <ng-container *ngIf="!cargandoEncuestas(); else cargaEncuestasTpl">
+        <div class="lista" *ngIf="encuestas().length > 0; else sinEncuestasTpl">
+          <div class="row" *ngFor="let e of encuestas()">
+            <div class="row-left">
+              <span class="badge" [attr.data-juego]="e.juego">{{ e.juego }}</span>
+            </div>
+
+            <div class="row-center">
+              <div class="row-title">
+                <span class="estrellas" [attr.aria-label]="'Puntaje ' + e.puntaje + ' de 5'">
+                  <mat-icon *ngFor="let s of [1,2,3,4,5]" [class.active]="s <= e.puntaje">star</mat-icon>
+                </span>
+                <span class="puntaje-text">{{ e.puntaje }}/5</span>
+              </div>
+              <div class="row-meta comentario" *ngIf="e.comentario">“{{ e.comentario }}”</div>
+            </div>
+
+            <div class="row-right">
+              <div class="fecha">{{ e.fechaISO | date:'short' }}</div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #cargaEncuestasTpl>
+        <div class="loading"><mat-icon class="spin">autorenew</mat-icon><span>Cargando encuestas...</span></div>
+      </ng-template>
+      <ng-template #sinEncuestasTpl>
+        <div class="sin-datos"><mat-icon>info</mat-icon><span>Sin encuestas registradas.</span></div>
+      </ng-template>
+    </section>
+    <!-- #endregion -->
+  </div>
+  <!-- #endregion -->
+</mat-card>

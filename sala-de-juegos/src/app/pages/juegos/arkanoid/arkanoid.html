@@ -1,0 +1,29 @@
+<div class="arkanoid-container">
+  <!-- #region División principal -->
+  <mat-card class="arkanoid-card split arkanoid-card--shadow-m arkanoid-card--hover" appearance="outlined">
+    <div class="hud">
+      <div class="estadisticas">
+        <span><b>Puntaje:</b> {{ puntaje() }}</span>
+        <span><b>Nivel:</b> {{ nivel() }}</span>
+        <span><b>Vidas:</b> {{ vidas() }}</span>
+      </div>
+
+      <div class="control-buttons">
+        <button mat-flat-button class="pausar-button" (click)="pauseToggle()">{{ pausado() ? 'Reanudar (P)' : 'Pausar (P)' }}</button>
+        <button mat-flat-button class="reiniciar-button" (click)="reiniciarJuego()">Reiniciar</button>
+        <button mat-raised-button class="guardar-resultados-button" (click)="guardarJuego(estado()==='gano')" [disabled]="!partidaIniciada()">
+          Guardar Resultado
+        </button>
+      </div>
+    </div>
+  </mat-card>
+
+  <div class="canvas-box">
+    <canvas #game width="640" height="480" aria-label="Arkanoid"></canvas>
+  </div>
+
+  <mat-card class="indicaciones-card" appearance="outlined">
+    <p>Controles: <b>←</b> <b>→</b> (Movimiento de la barra)</p>
+  </mat-card>
+  <!-- #endregion -->
+</div>

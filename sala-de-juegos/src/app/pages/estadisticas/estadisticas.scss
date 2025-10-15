@@ -1,0 +1,194 @@
+// #region Card contenedora
+:host {
+  align-self: start;
+  justify-self: center;
+  width: 100%;
+}
+
+.estadisticas-card {
+  height: 460px !important;
+  width: min(96vw, 1000px) !important;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: rgba(16,20,36,.86);
+  border: 1px solid rgba(130,160,255,.15);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.estadisticas-card.split {
+  width: min(96vw, 1000px);
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.estadisticas-card--hover:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,.42),
+    0 6px 18px rgba(0,0,0,.28),
+    0 0 0 1px rgba(0,0,0,.22);
+}
+// #endregion
+
+// #region División principal
+.estadisticas-div {
+  display: grid;
+  gap: 16px;
+  padding: 24px 28px;
+}
+
+h1 {
+  margin: 0 !important;
+  color: var(--color-secondary);
+}
+// #endregion
+
+// #region Panel
+.panel {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 6px;
+}
+
+.panel .lista {
+  height: 140px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.panel .lista::-webkit-scrollbar { width: 8px; }
+.panel .lista::-webkit-scrollbar-thumb {
+  background: rgba(168,158,255,.28);
+  border-radius: 999px;
+}
+
+.panel .lista::-webkit-scrollbar-track {
+  background: rgba(255,255,255,.06);
+  border-radius: 999px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--color-tertiary);
+}
+
+.lista {
+  max-height: 150px;
+  overflow: auto;
+  border: 1px solid rgba(130,160,255,.15);
+  border-radius: 12px;
+  background: rgba(16,20,36,.5);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: start;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(130,160,255,.12);
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.row-left {
+  align-self: center;
+}
+
+.row-center {
+  display: grid;
+  align-self: center;
+  gap: 4px;
+}
+
+.row-right {
+  text-align: right;
+  align-self: center;
+  white-space: nowrap;
+}
+
+.row-title {
+  font-weight: 700;
+}
+
+.fecha {
+  opacity: .9;
+  font-size: 12px;
+}
+// #endregion
+
+// #region Badge por Juego
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: var(--color-violet);
+  color: var(--texto-principal);
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+.badge[data-juego="ahorcado"] { background: var(--color-light-violet); color: var(--texto-secundario); }
+.badge[data-juego="mayor-menor"] { background: var(--color-tertiary);     color: var(--texto-secundario); }
+.badge[data-juego="preguntados"] { background: var(--color-primary);      color: var(--texto-principal); }
+.badge[data-juego="arkanoid"] { background: var(--color-secondary);    color: var(--texto-principal); }
+// #endregion
+
+// #region Estado de Carga / Vacío
+.loading,
+.sin-datos {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  padding: 16px;
+  color: #bcd7ff;
+}
+
+.loading .spin {
+  animation: spin 1s linear infinite;
+  color: var(--color-light-violet);
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.sin-datos mat-icon {
+  font-size: 28px; height: 28px; width: 28px;
+  color: var(--color-light-violet);
+}
+// #endregion
+
+// #region Estrellas
+.estrellas {
+  display: inline-flex;
+  gap: 2px;
+  vertical-align: middle;
+}
+
+.estrellas .mat-icon {
+  font-size: 18px;
+  width: 18px; height: 18px;
+  opacity: .35;
+}
+
+.estrellas .mat-icon.active {
+  opacity: 1;
+  color: var(--color-tertiary);
+}
+
+.puntaje-text {
+  margin-left: 6px;
+  font-size: 12px;
+  opacity: .9;
+}
+
+.comentario {
+  font-style: italic;
+}
+// #endregion

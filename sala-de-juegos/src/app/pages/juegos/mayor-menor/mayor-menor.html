@@ -1,0 +1,40 @@
+<mat-card class="mayor-menor-card split mayor-menor-card-shadow-m mayor-menor-card--hover" appearance="outlined">
+  <!-- #region División principal -->
+  <div class="mayor-menor-div">
+    <h1>Mayor / Menor</h1>
+    <div class="mayor-menor-layout">
+      <!-- #region División izquierda -->
+      <div class="panel panel-left">
+        <div class="estado">Carta actual</div>
+
+        <div class="carta-actual">
+          <div class="carta-inner">
+            <span class="carta-num">{{ cartaActual() }}</span>
+          </div>
+        </div>
+
+        <!-- #region Controles -->
+        <div class="controles">
+          <button mat-raised-button class="btn-mayor" (click)="seleccionarOpcion('>')">Mayor</button>
+          <button mat-raised-button class="btn-menor" (click)="seleccionarOpcion('<')">Menor</button>
+        </div>
+        <!-- #endregion -->
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region División derecha -->
+      <div class="panel panel-right">
+        <div class="puntaje">Puntaje: <b>{{ puntaje() }}</b></div>
+
+        <!-- #region Botones Reiniciar/Guardar -->
+        <div class="acciones">
+          <button mat-flat-button class="reiniciar-button" (click)="reiniciarJuego()">Reiniciar</button>
+          <button mat-raised-button class="guardar-resultados-button" (click)="guardarJuego()" [disabled]="!partidaIniciada()">Guardar Resultado</button>
+        </div>
+        <!-- #endregion -->
+      </div>
+      <!-- #endregion -->
+    </div>
+  </div>
+  <!-- #endregion -->
+</mat-card>

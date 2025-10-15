@@ -1,0 +1,56 @@
+// #region Toolbar - Nombre y Logo
+.app-logo {
+  height: 44px !important;
+  width: 44px !important;
+  margin-right: 12px;
+  margin-left: 12px;
+  object-fit: cover;
+  display: inline-block;
+}
+
+.app-titulo{
+  font-size: 1.10rem;
+  font-weight: 400;
+  color: var(--texto-principal);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+// #endregion
+
+// #region Toolbar - Opciones
+.opciones-toolbar {
+  font-weight: 700;
+  margin-right: 12px;
+  background-color: transparent;
+  color: var(--texto-principal) !important;
+}
+// #endregion
+
+// #region Toolbar - Background y Animación
+mat-toolbar.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(90deg, var(--color-violet), var(--color-pink), var(--color-dark-blue), var(--color-light-violet));
+  background-size: 300% 300%;
+  animation: toolbarFlow 12s ease infinite;
+  color: var(--color-white);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, .28),
+    0 2px  8px rgba(0, 0, 0, .22),
+    0 0  0 1px rgba(0, 0, 0, .20); 
+}
+@keyframes toolbarFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+mat-toolbar.toolbar .mat-icon,
+mat-toolbar.toolbar .mat-mdc-button {
+  color: var(--texto-principal);
+}
+// #endregion

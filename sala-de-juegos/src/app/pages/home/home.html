@@ -1,7 +1,31 @@
-<div class="wrap">
-    <mat-card appearance="outlined">
-        <h2>Inicio</h2>
-        <p *ngIf="(auth.user$ | async) as user">Hola, <b>{{ user.email }}</b> 👋</p>
-        <p>Bienvenida a tu Sala de Juegos. Desde acá vas a acceder a Ahorcado, Mayor/Menor, Preguntados y tu juego propio.</p>
-    </mat-card>
+<div class="home-container">
+  <!-- #region División principal -->
+  <mat-card class="home-card split home-card-shadow-m home-card--hover"  appearance="outlined">
+    <!-- #region Información de Encabezado -->
+    <header class="encabezado">
+      <ng-container *ngIf="(usuario$ | async) as u; else usuarioCargando">
+        <h1>¡Hola, {{ u?.NOMBRE || u?.EMAIL }}!</h1>
+      </ng-container>
+      <ng-template #usuarioCargando>
+        <div class="skeleton skeleton-title" aria-hidden="true"></div>
+      </ng-template>
+
+      <h2 *ngIf="(auth.user$ | async) as user">Jugador: <b class="email">{{ user.email }}</b></h2>
+      <h3>Elegí un juego para medir tus reflejos y conocimientos</h3>
+    </header>
+    <!-- #endregion -->
+
+    <!-- #region Accesos a Juegos -->
+    <section class="games-grid">
+      <app-game-card class="game-card" *ngFor="let j of juegos" [title]="j.title" [path]="j.path" [emoji]="j.emoji"></app-game-card>
+    </section>
+    <!-- #endregion -->
+
+    <section style="margin-top: auto; text-align: center;">
+      <button mat-raised-button class="encuesta-button" routerLink="/agregar-encuesta" *ngIf="!(auth.esAdmin$ | async)">
+        Realizar encuesta de satisfacción
+      </button>
+    </section>
+  </mat-card>
+  <!-- #endregion -->
 </div>

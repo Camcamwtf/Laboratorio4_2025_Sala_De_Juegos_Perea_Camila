@@ -1,0 +1,20 @@
+<mat-card class="ahorcado-card split ahorcado-card-shadow-m ahorcado-card--hover" appearance="outlined">
+  <!-- #region División principal -->
+  <div class="ahorcado-div">
+    <h1>Ahorcado</h1>
+    <div class="estado">Errores: <b>{{ errores() }}</b> / {{ maximoErrores }}</div>
+    <div class="palabra">{{ masked() }}</div>
+    <div class="letras">
+      <button class="letra" mat-raised-button [disabled]="letrasUsadas.has(l)" *ngFor="let l of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')" (click)="acertarLetra(l)" [disabled]="letrasUsadas.has(l)" [class.ok]="letrasOK.has(l)" [class.fail]="letrasFALLIDAS.has(l)">{{ l }}</button>
+    </div>
+
+    <div class="acciones">
+      <button mat-flat-button class="reiniciar-button" (click)="reiniciarJuego()">Reiniciar</button>
+      <button mat-raised-button class="guardar-resultados-button" (click)="guardarJuego()" [disabled]="!partidaIniciada()">Guardar Resultado</button>
+    </div>
+
+    <p class="resultado" *ngIf="estadoJuego==='gano'">¡Ganaste! ¡Felicitaciones! 🎉</p>
+    <p class="resultado" *ngIf="estadoJuego==='perdio'">¡Perdiste! La palabra correcta era <b>{{ palabraCorrecta() }}</b>.</p>
+  </div>
+  <!-- #endregion -->
+</mat-card>

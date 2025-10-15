@@ -1,0 +1,59 @@
+<div class="agregar-encuesta-container">
+  <!-- #region División principal -->
+  <mat-card class="agregar-encuesta-card split agregar-encuesta-card-shadow-m agregar-encuesta-card--hover" appearance="outlined">
+    <header class="encabezado">
+      <h1>Encuesta de satisfacción</h1>
+      <h3>¡Tu opinión nos ayuda a mejorar!</h3>
+    </header>
+
+    <form class="encuesta-form-grid" [formGroup]="agregarEncuestaForm" (ngSubmit)="onSubmit()">
+      <!-- #region Juego -->
+      <mat-form-field class="juego-field" appearance="outline" [class.invalid]="f['JUEGO'].invalid && (f['JUEGO'].touched || submitted)">
+        <mat-label>Juego</mat-label>
+        <mat-select formControlName="JUEGO" placeholder="Seleccioná un juego" [panelClass]="'select-violet-panel'">
+          <mat-option *ngFor="let j of juegos" [value]="j">{{ j }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- #endregion -->
+
+      <!-- #region Puntaje (Manejo de Estrellas) -->
+      <div class="estrellas-puntaje-div" [class.invalid]="f['PUNTAJE'].invalid && (f['PUNTAJE'].touched || submitted)">
+        <div class="estrellas-header">
+          <label class="label-puntaje">Puntaje - </label>
+          <span class="valor-estrellas" aria-live="polite">{{ agregarEncuestaForm.value.PUNTAJE || 0 }}/5</span>
+        </div>
+
+        <div class="estrellas-div">
+          <button type="button" mat-icon-button *ngFor="let s of estrellas" (click)="setPuntaje(s)" [attr.aria-label]="'Puntaje ' + s">
+            <mat-icon [class.active]="esEstrellaMarcada(s)">star</mat-icon>
+          </button>
+        </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region Comentario del usuario -->
+      <mat-form-field class="comentario" appearance="outline">
+        <mat-label>Comentario (opcional)</mat-label>
+        <textarea matInput formControlName="COMENTARIO" placeholder="Contanos tu experiencia..." cdkTextareaAutosize cdkAutosizeMinRows="2" cdkAutosizeMaxRows="6">
+        </textarea>
+      </mat-form-field>
+      <!-- #endregion -->
+
+      <div class="pie-encuestas-div">
+        <!-- #region Validaciones -->
+        <div class="validaciones-row" aria-live="polite" role="status">
+          <div class="field-error" *ngIf="f['JUEGO'].invalid && (f['JUEGO'].touched || submitted)">* Debes seleccionar un juego.</div>
+          <div class="field-error" *ngIf="f['PUNTAJE'].invalid && (f['PUNTAJE'].touched || submitted)">* Debes seleccionar al menos 1 estrella.</div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- Botones a la derecha -->
+        <div class="acciones">
+          <button mat-stroked-button class="cancelar-button" routerLink="/home" type="button">Cancelar</button>
+          <button mat-raised-button class="enviar-button" type="submit">Enviar</button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+  <!-- #endregion -->
+</div>

@@ -1,0 +1,271 @@
+// #region Contenedor
+.login-container {
+  display: grid;
+  min-height: calc(100dvh - var(--toolbar-h, 64px));
+  place-items: center;
+  padding: 16px;
+}
+
+.fade-in {
+  animation: fadeInUp 180ms ease-out both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+// #endregion
+
+// #region División principal
+.login-card {
+  height: 560px !important;
+  width: min(92vw, 1200px) !important;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: rgba(16,20,36,.86);
+  border: 1px solid rgba(130,160,255,.15);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.login-card.split {
+  width: min(96vw, 960px);
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.login-card--hover:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,.42),
+    0 6px 18px rgba(0,0,0,.28),
+    0 0 0 1px rgba(0,0,0,.22);
+}
+// #endregion
+
+// #region Contenedor del centro (Dividido en 2)
+.login-div {
+  display: grid;
+  min-height: 520px;
+  height: 600px !important;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+
+// #region División izquierda (Datos de ingreso)
+.div-izquierdo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 32px 24px 32px;
+}
+
+.div-izquierdo h2 {
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.login-field {
+  width: 100%;
+}
+
+.field-error {
+  color: var(--color-danger);
+}
+
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  min-height: 0;
+}
+
+:host ::ng-deep .mat-mdc-form-field-infix {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+:host ::ng-deep .mat-mdc-form-field {
+  margin: 0;
+}
+
+:host ::ng-deep .toggle-pass-btn.mat-mdc-icon-button {
+  margin-right: 8px;
+}
+
+.ojo-icono {
+  font-size: 22px;
+}
+
+.login-ingresar-btn {
+  width: 100%;
+  max-width: 560px;
+  font-weight: 700;
+  color: var(--texto-principal) !important;
+  background-color: var(--color-secondary) !important;
+  box-shadow: 0 6px 14px rgba(var(--color-pink-rgb) / .20);
+  transition: box-shadow .2s ease, transform .15s ease, filter .2s ease;
+  --border-radius: 9999px;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow:
+      0 0 0 3px rgba(var(--color-pink-rgb) / .28),
+      0 10px 26px rgba(var(--color-pink-rgb) / .32);
+    filter: brightness(1.04);
+    transform: translateY(-1px);
+    outline: none;
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow:
+      0 0 0 2px rgba(var(--color-pink-rgb) / .22),
+      0 6px 18px rgba(var(--color-pink-rgb) / .28);
+  }
+}
+
+.link-btn {
+  min-width: 0;
+  height: auto;
+  padding: 0;
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.25;
+  box-shadow: none;
+  text-transform: none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  background: transparent !important;
+  color: var(--color-light-violet) !important;
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  text-decoration-thickness: 2px;
+}
+
+.link-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+button.login-field {
+  align-self: stretch;
+}
+
+.acceso-rapido-label {
+  margin-top: 32px;
+}
+
+.acceso-rapido {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.acceso-rapido-button {
+  width: 100%;
+  min-width: 0;
+  padding-left: 32px;
+  font-weight: 700;
+  color: var(--texto-principal) !important;
+  background-color: var(--color-secondary) !important;
+  overflow: visible;
+  box-shadow: 0 6px 14px rgba(var(--color-pink-rgb) / .20);
+  transition: box-shadow .2s ease, transform .15s ease, filter .2s ease;
+  --border-radius: 9999px;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow:
+      0 0 0 3px rgba(var(--color-pink-rgb) / .28),
+      0 10px 26px rgba(var(--color-pink-rgb) / .32);
+    filter: brightness(1.04);
+    transform: translateY(-1px);
+    outline: none;
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow:
+      0 0 0 2px rgba(var(--color-pink-rgb) / .22),
+      0 6px 18px rgba(var(--color-pink-rgb) / .28);
+  }
+}
+
+:host ::ng-deep .acceso-rapido-button .mdc-button__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  width: 100%;
+  overflow: visible;
+  gap: 8px;
+}
+
+:host ::ng-deep .acceso-rapido-button.mat-mdc-stroked-button {
+  min-height: 56px;
+  --mdc-filled-button-container-height: 56px;
+  --mdc-text-button-container-height: 56px;
+}
+
+.acceso-rapido-icon {
+  display: inline-block;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  line-height: 1;
+  color: var(--color-violet);
+}
+
+:host ::ng-deep .acceso-rapido-button .mat-icon.acceso-rapido-icon {
+  font-size: 32px !important;
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 1 !important;
+  display: inline-block;
+}
+
+.acceso-rapido-label-text {
+  white-space: nowrap;
+  font-size: 14px;
+}
+// #endregion
+
+// #region División derecha (Imagen)
+.div-derecho {
+  position: relative;
+}
+
+.div-derecho img {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  border-radius: 0px 12px 12px 0;
+  filter: contrast(1.05) saturate(1.05);
+}
+
+.div-derecho::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0px 12px 12px 0;
+  background: linear-gradient(135deg, rgba(0,0,0,.25), rgba(0,0,0,.1));
+  pointer-events: none;
+}
+
+mat-label {
+  color: rgb(224, 224, 224);
+}
+// #endregion
+// #endregion

@@ -1,0 +1,88 @@
+// #region Contenedor
+.quien-soy-content {
+  min-height: calc(100dvh - var(--toolbar-h, 64px));
+  display: grid;
+  place-items: start center;
+  padding: 170px 16px 16px;
+}
+// #endregion
+
+// #region División principal
+.quien-soy-card {
+  display: grid;
+  height: 460px;
+  width: min(96vw, 1000px);
+  padding: 24px 28px;
+  align-items: center;
+  box-sizing: border-box;
+  background: rgba(16,20,36,.86);
+  border: 1px solid rgba(130,160,255,.15);
+  grid-template-columns: 280px minmax(0, 1fr);
+  transition: box-shadow .2s ease, transform .2s ease;
+  gap: 40px
+}
+
+.quien-soy-card.split {
+  width: min(96vw, 1000px);
+  margin: 0 auto;
+  padding: 24px 28px 24px 48px;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.quien-soy-card--hover:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,.42),
+    0 6px 18px rgba(0,0,0,.28),
+    0 0 0 1px rgba(0,0,0,.22);
+}
+// #endregion
+
+// #region Mi Foto
+.avatar {
+  display: block;
+  width: 280px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(130,160,255,.15);
+  backdrop-filter: blur(4px);
+}
+// #endregion
+
+// #region Labels
+.titulo {
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-primary);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 0;
+}
+
+.descripcion-juego {
+  font-style: italic;
+  letter-spacing: .2px;
+  line-height: 1.5;
+  color: var(--color-light-violet);
+}
+
+h1 {
+  margin: 0 0 8px;
+  color: var(--color-secondary);
+}
+
+h2 {
+  margin-top: 0;
+}
+// #endregion

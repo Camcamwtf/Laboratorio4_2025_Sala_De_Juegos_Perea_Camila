@@ -1,0 +1,34 @@
+<mat-card class="preguntados-card split preguntados-card-shadow-m preguntados-card--hover" appearance="outlined">
+  <!-- #region División principal -->
+  <div class="preguntados-div">
+    <h1>Preguntados</h1>
+    <div class="estado" *ngIf="!finalizado()">Pregunta <b>{{ index()+1 }}</b> / {{ preguntas.length }}</div>
+    <ng-container *ngIf="!finalizado(); else finTpl">
+      <div class="pregunta">
+        <b>{{ index()+1 }}.</b> {{ preguntas[index()].q }}
+      </div>
+
+      <div class="opciones-grid">
+        <button mat-raised-button class="opcion" *ngFor="let o of preguntas[index()].opciones" (click)="seleccionarOpcion(o.code)">
+          <img class="flag" [src]="o.img" [alt]="'Bandera de ' + o.label"/>
+        </button>
+      </div>
+      <div class="resultado-parcial">Correctas: <b>{{ respuestaCorrecta() }}</b></div>
+    </ng-container>
+
+    <ng-template #finTpl>
+      <div class="resultado-final">
+        <div *ngIf="gano()" class="mensaje-gano">¡Ganaste! 🎉</div>
+        Correctas: <b>{{ respuestaCorrecta() }}</b> / {{ preguntas.length }}
+        <div class="puntaje-final">Puntaje: <b>{{ puntaje() }}</b></div>
+        <div class="puntaje-final">{{ gano() ? 'Ganaste' : 'Perdiste' }} (Mínimo para ganar: {{ minParaGanar() }})</div>
+      </div>
+
+      <div class="acciones">
+        <button mat-flat-button class="reiniciar-button" type="button" (click)="reiniciarJuego()">Reiniciar</button>
+        <button mat-raised-button class="guardar-resultados-button" type="button" (click)="guardarJuego()" [disabled]="!partidaIniciada()">Guardar Resultado</button>
+      </div>
+    </ng-template>
+  </div>
+  <!-- #endregion -->
+</mat-card>

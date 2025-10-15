@@ -1,14 +1,21 @@
-<mat-toolbar color="primary">
-  <span>🎮 Sala de Juegos</span>
+<mat-toolbar class="toolbar">
+  <img class="app-logo" src="assets/icon-corazon.png" alt="Mi logo">
+  <span class="app-titulo">Sala de Juegos</span>
   <span class="spacer"></span>
-  <a mat-button routerLink="/home">Home</a>
-  <a mat-button routerLink="/quien-soy">Quién Soy</a>
-  <ng-container *ngIf="(auth.user$ | async) as user; else login">
-    <button mat-button (click)="logout()"><mat-icon>logout</mat-icon> Salir</button>
+
+  <ng-container *ngIf="(auth.user$ | async) as user">
+    <a mat-button class="opciones-toolbar" routerLink="/home">Home</a>
+    <a mat-button class="opciones-toolbar" routerLink="/quien-soy">Quién Soy</a>
+    <a mat-button class="opciones-toolbar" routerLink="/ahorcado">Ahorcado</a>
+    <a mat-button class="opciones-toolbar" routerLink="/mayor-menor">Mayor/Menor</a>
+    <a mat-button class="opciones-toolbar" routerLink="/preguntados">Preguntados</a>
+    <a mat-button class="opciones-toolbar" routerLink="/arkanoid">Mi Juego</a>
+    <a mat-button class="opciones-toolbar" routerLink="/estadisticas">Estadísticas</a>
+    <a mat-button class="opciones-toolbar" *ngIf="(auth.esAdmin$ | async)" routerLink="/encuestas">Encuestas</a>
+    <button mat-button class="opciones-toolbar" (click)="logout()"><mat-icon>logout</mat-icon> Salir</button>
   </ng-container>
-  <ng-template #login>
-    <a mat-button routerLink="/login"><mat-icon>login</mat-icon> Login</a>
-  </ng-template>
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<div class="main">
+  <router-outlet></router-outlet>
+</div>

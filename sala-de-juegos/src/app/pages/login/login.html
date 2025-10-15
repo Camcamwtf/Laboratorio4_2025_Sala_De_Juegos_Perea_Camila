@@ -1,25 +1,80 @@
-<div class="center" [@fade]>
-    <mat-card appearance="outlined">
+<div class="login-container fade-in">
+  <!-- #region División principal -->
+  <mat-card class="login-card split login-card--shadow-m login-card--hover" appearance="outlined">
+    <div class="login-div">
+      <div class="div-izquierdo">
         <h2>{{ isRegister() ? 'Crear cuenta' : 'Iniciar sesión' }}</h2>
 
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <mat-form-field appearance="outline" class="full">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email" type="email" autocomplete="email">
-            </mat-form-field>
+        <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <!-- #region Nombre -->
+          <mat-form-field class="login-field" appearance="outline" *ngIf="isRegister()">
+            <mat-label>Nombre</mat-label>
+            <mat-icon matPrefix>person</mat-icon>
+            <input matInput formControlName="nombre" type="text" autocomplete="name">
+          </mat-form-field>
+          <!-- #endregion -->
 
-            <mat-form-field appearance="outline" class="full">
-                <mat-label>Contraseña</mat-label>
-                <input matInput formControlName="password" type="password" autocomplete="current-password">
-            </mat-form-field>
+          <!-- #region Correo electrónico -->
+          <mat-form-field class="login-field" appearance="outline">
+            <mat-label>Correo electrónico</mat-label>
+            <mat-icon matPrefix>mail</mat-icon>
+            <input matInput formControlName="email" type="email" autocomplete="email">
+          </mat-form-field>
+          <!-- #endregion -->
+
+          <!-- #region Contraseña -->
+          <mat-form-field class="login-field" appearance="outline">
+            <mat-icon matPrefix>lock</mat-icon>
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="mostrarClave1 ? 'text' : 'password'" formControlName="password" autocomplete="current-password">
+            <button mat-icon-button matSuffix class="toggle-pass-btn" type="button" (click)="mostrarClave1 = !mostrarClave1" [attr.aria-label]="'Mostrar/Ocultar contraseña'">
+              <mat-icon class="ojo-icono">{{ mostrarClave1 ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+          <!-- #endregion -->
+
+          <!-- #region Confirmar contraseña -->
+          <mat-form-field class="login-field" appearance="outline" *ngIf="isRegister()">
+            <mat-icon matPrefix>lock</mat-icon>
+            <mat-label>Confirmar contraseña</mat-label>
+            <input matInput [type]="mostrarClave2 ? 'text' : 'password'" formControlName="passwordConfirm" autocomplete="new-password">
+            <button mat-icon-button matSuffix class="toggle-pass-btn" type="button" (click)="mostrarClave2 = !mostrarClave2" [attr.aria-label]="'Mostrar/Ocultar contraseña'">
+              <mat-icon class="ojo-icono">{{ mostrarClave2 ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-hint class="field-error" *ngIf="form.hasError('passwordMismatch')">Las contraseñas no coinciden</mat-hint>
+          </mat-form-field>
+          <!-- #endregion -->
+
+          <!-- #region Botón y Link de Login / Registro -->
+          <button mat-raised-button class="login-ingresar-btn" #loginBtn type="submit">
+            {{ isRegister() ? 'REGISTRARME' : 'ACCEDER' }}
+          </button>
+
+          <button mat-button class="link-btn" type="button" [disableRipple]="true" (click)="toggleMode()">
+            {{ isRegister() ? '¿Ya tienes cuenta? Ingresá' : '¿No tienes cuenta? Regístrate' }}
+          </button>
+          <!-- #endregion -->
+
+          <!-- #region Acceso rápido -->
+          <p class="acceso-rapido-label" *ngIf="!isRegister()">También podés acceder como...</p>
+          <div class="acceso-rapido" *ngIf="!isRegister()">
+            <button mat-stroked-button class="acceso-rapido-button" type="button" (click)="loginRapido('admin@example.com','admin123')">
+              <mat-icon class="acceso-rapido-icon">verified_user</mat-icon>
+              <span class="acceso-rapido-label-text">ADMIN</span>
+            </button>
+
+            <button mat-stroked-button class="acceso-rapido-button" type="button" (click)="loginRapido('user@example.com','user123')">
+              <mat-icon class="acceso-rapido-icon">accessibility</mat-icon>
+              <span class="acceso-rapido-label-text">USUARIO</span>
+            </button>
+          </div>
+          <!-- #endregion -->
         </form>
-
-        <button mat-flat-button class="button" type="submit">
-            {{ isRegister() ? 'Registrarme' : 'Ingresar' }}
-        </button>
-
-        <button mat-flat-button class="button" (click)="toggleMode()">
-            {{ isRegister() ? 'Ya tengo cuenta' : 'Crear nueva cuenta' }}
-        </button>
-    </mat-card>
+      </div>
+      <div class="div-derecho">
+        <img src="assets/arcade.png" alt="Arcade retro">
+      </div>
+    </div>
+  </mat-card>
+  <!-- #endregion -->
 </div>

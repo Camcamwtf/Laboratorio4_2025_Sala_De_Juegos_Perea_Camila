@@ -1,0 +1,175 @@
+// #region Contenedor
+.home-container {
+  min-height: calc(100dvh - var(--toolbar-h, 64px));
+  display: grid;
+  place-items: start center;
+  padding: 170px 16px 16px;
+}
+// #endregion
+
+// #region División principal
+.home-card {
+  display: flex;
+  width: min(96vw, 1000px);
+  height: 460px;
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: 40px;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+  background: rgba(16,20,36,.86);
+  border: 1px solid rgba(130,160,255,.15);
+  border-radius: 20px;
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.home-card.split {
+  width: min(96vw, 1000px);
+  margin: 0 auto;
+  padding: 24px 28px;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.home-card--hover:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,.42),
+    0 6px 18px rgba(0,0,0,.28),
+    0 0 0 1px rgba(0,0,0,.22);
+}
+// #endregion
+
+// #region Datos de inicio
+.encabezado {
+  text-align: center;
+  margin: 24px 0 8px;
+  display: grid;
+  gap: 6px; 
+}
+
+h1 {
+  margin: 0 0 8px;
+  color: var(--color-secondary);
+}
+
+h2 {
+  margin: 4px 0 6px;
+}
+
+h3 {
+  margin: 4px 24px 0 24px;
+  color: var(--color-tertiary);
+}
+
+.email {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--color-primary);
+}
+
+.skeleton {
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.08) 0%,
+    rgba(255,255,255,0.18) 50%,
+    rgba(255,255,255,0.08) 100%
+  );
+  animation: shimmer 1.2s infinite linear;
+}
+
+.skeleton-title {
+  width: clamp(180px, 40vw, 420px);
+  height: 28px;
+  margin: 0 auto 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+// #endregion
+
+// #region Cards de Juegos
+:host ::ng-deep app-game-card .mat-mdc-card {
+  background: var(--color-violet) !important;
+  color: var(--texto-principal) !important;
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow:
+    0 6px 14px rgba(var(--color-light-violet-rgb) / .20),
+    0 0 0 0 rgba(var(--color-light-violet-rgb) / 0);
+  transition: box-shadow .2s ease, transform .15s ease, filter .2s ease;
+}
+
+:host ::ng-deep app-game-card .mat-mdc-card:hover,
+:host ::ng-deep app-game-card .mat-mdc-card:focus-visible {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(var(--color-light-violet-rgb) / .28),
+    0 10px 26px rgba(var(--color-light-violet-rgb) / .32);
+}
+
+:host ::ng-deep app-game-card .mat-mdc-card:active {
+  transform: translateY(0);
+  box-shadow:
+    0 0 0 2px rgba(var(--color-light-violet-rgb) / .25),
+    0 6px 18px rgba(var(--color-light-violet-rgb) / .28);
+}
+
+:host ::ng-deep app-game-card .mat-mdc-card .content {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.games-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 28px;
+}
+
+.games-grid .game-card {
+  display: block;
+  width: 100%;
+}
+// #endregion
+
+// #region Botón Encuesta
+.encuesta-button {
+  color: var(--texto-principal);
+  background-color: var(--color-primary);
+  margin-bottom: 24px;
+  box-shadow: 0 6px 14px rgba(0, 125, 175, .20);
+  transition: box-shadow .2s ease, transform .15s ease, filter .2s ease;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow:
+      0 0 0 3px rgba(0, 125, 175, .28),
+      0 10px 26px rgba(0, 125, 175, .32);
+    filter: brightness(1.04);
+    transform: translateY(-1px);
+    outline: none;
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow:
+      0 0 0 2px rgba(0, 125, 175, .25),
+      0 6px 18px rgba(0, 125, 175, .28);
+  }
+
+  &:disabled {
+    filter: none;
+    transform: none;
+    box-shadow: none;
+    opacity: .7;
+  }
+}
+// #endregion

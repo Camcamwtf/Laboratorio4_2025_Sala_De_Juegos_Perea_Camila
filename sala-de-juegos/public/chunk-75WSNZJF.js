@@ -1,0 +1,1 @@
+import{b as a}from"./chunk-G24662RJ.js";import{$a as t,Hc as n}from"./chunk-TXKU6S6B.js";import"./chunk-4ZZIO3ZI.js";var s=class e{static \u0275fac=function(o){return new(o||e)};static \u0275cmp=t({type:e,selectors:[["app-quien-soy"]],decls:0,vars:0,template:function(o,i){},dependencies:[n,a],encapsulation:2})};export{s as NotFound};
